@@ -24,7 +24,14 @@ class GoogleDriveService: ObservableObject {
             throw NSError(domain: "GoogleDriveService", code: -1, userInfo: [NSLocalizedDescriptionKey: "No presenting view controller"])
         }
 
-        let signInConfig = GIDConfiguration(clientID: "YOUR_CLIENT_ID") // Google Cloud Consoleで取得
+        // Info.plistからClient IDを取得
+        guard let clientID = Bundle.main.object(forInfoDictionaryKey: "GIDClientID") as? String,
+              !clientID.isEmpty,
+              clientID != "$(GOOGLE_CLIENT_ID)" else {
+            throw NSError(domain: "GoogleDriveService", code: -2, userInfo: [NSLocalizedDescriptionKey: "Google Client ID not configured. Please check SETUP.md"])
+        }
+
+        let signInConfig = GIDConfiguration(clientID: clientID)
 
         let result = try await GIDSignIn.sharedInstance.signIn(
             withPresenting: presentingViewController,

@@ -1,0 +1,9 @@
+// Google Drive API Configuration Template
+// このファイルをコピーして Config.xcconfig を作成してください
+// cp Config.xcconfig.template Config.xcconfig
+
+// Google OAuth Client ID (例: 123456789-xxxxx.apps.googleusercontent.com)
+GOOGLE_CLIENT_ID = YOUR_CLIENT_ID_HERE
+
+// URL Scheme (Reversed Client ID - 例: com.googleusercontent.apps.123456789-xxxxx)
+GOOGLE_URL_SCHEME = YOUR_REVERSED_CLIENT_ID_HERE
