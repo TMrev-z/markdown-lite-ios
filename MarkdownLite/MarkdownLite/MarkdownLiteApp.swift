@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct MarkdownLiteApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
         }
     }
 }
